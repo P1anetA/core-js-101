@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName}!`
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -66,7 +66,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  return value.slice(7, value.length-1)
+  return value.slice(7, value.length - 1);
 }
 
 
@@ -142,7 +142,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  return str.slice(1, -1)
+  return str.slice(1, -1);
 }
 
 
@@ -176,7 +176,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  return str.split(';')
+  return str.split(';');
 }
 
 /**
@@ -203,29 +203,29 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  let result = [];
-  for (let i = 0; i < height; i++) {
+  const result = [];
+  for (let i = 0; i < height; i += 1) {
     let string = '';
-    if (i===0) {
-      string += '┌';
-      for (let j = 0; j < width; j++) {
-        string+= '─';
+    if (i === 0) {
+      string += '+┌';
+      for (let j = 0; j < width - 2; j += 1) {
+        string += '─';
       }
-    } else if (i===height-1) {
+    } else if (i === height - 1) {
       string += '└';
-      for (let j = 0; j < width; j++) {
-        string+= '─';
+      for (let j = 0; j < width - 2; j += 1) {
+        string += '─';
       }
     } else {
       string += '│';
-      for (let j = 0; j < width; j++) {
-        string+= ' ';
+      for (let j = 0; j < width - 2; j += 1) {
+        string += ' ';
       }
     }
-    if (i===0) {
-      string+= '┐\n'
-    } else if (i===height-1) {
-      string+= '┘\n';
+    if (i === 0) {
+      string += '┐\n';
+    } else if (i === height - 1) {
+      string += '┘\n';
     } else {
       string += '│\n';
     }
@@ -251,10 +251,10 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
- function encodeToRot13(str) {
-	const normal = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const cipher = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
-  return str.replace(/[a-z]/gi, letter => cipher[normal.indexOf(letter)]);
+function encodeToRot13(str) {
+  const normal = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const cipher = 'nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM';
+  return str.replace(/[a-z]/gi, (letter) => cipher[normal.indexOf(letter)]);
 }
 
 /**
@@ -272,10 +272,9 @@ function getRectangleString(width, height) {
  */
 function isString(value) {
   if (typeof value === 'string') {
-    return true
-  } else {
-    return false
+    return true;
   }
+  return false;
 }
 
 
@@ -304,15 +303,17 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  let deck = [ 'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
-  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
-  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
-  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠']
-  for (let i=0; i <= deck.length; i++) {
-    if (value === deck[i]){
-      return i;
+  let result = 0;
+  const deck = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  for (let i = 0; i <= deck.length; i += 1) {
+    if (value === deck[i]) {
+      result = i;
     }
   }
+  return result;
 }
 
 
